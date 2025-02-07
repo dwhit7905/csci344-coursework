@@ -1,5 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Bonbon&family=Roboto:wght@500&family=UnifrakturMaguntia&display=swap');
+
 body {
-    background-color: gainsboro;
-    font-family:cursive
+    background-color: rgb(0, 47, 12);
+    color: gainsboro
 }
 
+h1 {
+    font-family: "UnifrakturMaguntia", serif;
+}
