@@ -8,3 +8,11 @@ body {
 h1 {
     font-family: "UnifrakturMaguntia", serif;
 }
+
+a:link {
+    color: gainsboro;
+}
+
+a:visited {
+    color: rgb(117, 117, 117);
+}
