@@ -4,19 +4,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="./style.css">
+    <title>Photo App</title>
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
 </head>
 <body>
-    <nav>
-        <h1><a href="#home">Logo</a></h1>
+    <header class="top-nav">
+        <h1 class="logo">
+            Photo App
+        </h1>
+        <nav>
+            <a href="#username">deswhit</a>
+            <a href="#signout">Sign Out</a>     
+        </nav>
+    </header>
+    <main>
 
-        <ul>
-            <li><a href="#bio">bio</a></li>
-            <li><a href="#portfolio">portfolio</a></li>
-            <li><a href="#contact">contact</a></li>
-        </ul>
-    </nav>
+        <aside>
+            <header class="current-user">
+                <img src="https://picsum.photos/60" alt="profile picture">
+                <h2>deswhit</h2>
+            </header>
+            <section class="suggestions">
+                <h3>Suggestions for you</h3>
+                <div class="account">
+                    <img src="https://picsum.photos/40" alt="profile picture for account num 1">
+                    <div>
+                        <h3>alyssalstiles</h3>
+                        <p>suggested for you</p>
+                    </div>
+                    <a href="#">follow</a>
+                </div>
+                <div class="account">
+                    <img src="https://picsum.photos/40" alt="profile picture for account num 2">
+                    <div>
+                        <h3>cassidycamden</h3>
+                        <p>suggested for you</p>
+                    </div>
+                    <a href="#">follow</a>
+                </div>
+                <div class="account">
+                    <img src="https://picsum.photos/40" alt="profile picture for account num 3">
+                    <div>
+                        <h3>creepinggreen</h3>
+                        <p>suggested for you</p>
+                    </div>
+                    <a href="#">follow</a>
+                </div>
+                <div class="account">
+                    <img src="https://picsum.photos/40" alt="profile picture for account num 4">
+                    <div>
+                        <h3>a_cameron_v</h3>
+                        <p>suggested for you</p>
+                    </div>
+                    <a href="#">follow</a>
+                </div>
+            </section>
+        </aside>
+
+        <section class="news-feed">
+            <header class="stories">
+                <div>
+                    <img src="https://picsum.photos/50" alt="account nm 1 story">
+                    <p>alyssalstiles</p>
+                </div>
+                <div>
+                    <img src="https://picsum.photos/50" alt="account nm 2 story">
+                    <p>cassidycamden</p>
+                </div>
+                <div>
+                    <img src="https://picsum.photos/50" alt="account nm 3 story">
+                    <p>creepinggreen</p>
+                </div>
+                <div>
+                    <img src="https://picsum.photos/50" alt="account nm 4 story">
+                    <p>a_cameron_v</p>
+                </div>
+            </header>
+            <section class="post">
+                <header>
+                    <h2>deswhit</h2>
+                    <i class="fa-solid fa-ellipsis"></i>
+                </header>
+                <img src="https://picsum.photos/400" alt="post 1">
+                
+            </section>
+            <section class="post">
+                Post 2
+            </section>
+            <section class="post">
+                Post 3
+            </section>
+            <section class="post">
+                Post 4
+            </section>
+        </section>
+    </main>
 </body>
 </html>

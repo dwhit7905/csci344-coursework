@@ -1,24 +1,124 @@
-html {
-    scroll-behavior: smooth;
+body * {
+    box-sizing: border-box;
 }
 
-nav {
-    display: flex;
-    position: fixed;
+body {
+    margin: 0;
+    background-color: rgb(227, 227, 227);
+}
+
+/* Begin Debugging Code */
+/* header,
+main,
+main section,
+nav,
+.logo {
+    border: solid 2px #CCC;
     padding: 10px;
-    width: 100%;
+    margin: 10px;
+}
+
+.logo {
+    font-size: 1em;
+    font-weight: normal;
+}
+
+aside,
+body>header,
+main,
+.news-feed {
+    border: solid 4px #000;
+    padding: 10px;
+    margin: 10px;
+    font-family: monospace;
+} */
+
+/* End Debugging Code */
+
+.top-nav {
+    position: sticky;
+    top: 0;
+    left: 0;
+    background-color: rgb(255, 255, 255);
+    margin: 0;
+    display: flex;
     justify-content: space-between;
     align-items: center;
+    padding-left: 30px;
+    padding-right: 30px;
 }
 
+.post {
+    min-height: 300px;
+}
 
-ul {
+aside {
+    position: fixed;
+    top: 100px;
+    left: 65vw;
+    background-color: rgb(227, 227, 227);
+    min-height: 80vh;
+    width: calc(35vw - 30px);
+    
+}
+
+aside img {
+    border-radius: 50%;
+}
+
+.account {
+    display: grid;
+    grid-template-columns: 80px auto 80px;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.account p, .account h3 {
+    margin: 0;
+}
+
+.current-user {
     display: flex;
-    list-style-type: none;
-    padding: 20px;
     gap: 20px;
 }
 
-* {
-    background-color: pink;
+.stories {
+    display: flex;
+    justify-content: left;
+    padding: 10px;
+    gap: 30px;
+    align-items:center;
+    background-color: white;
+}
+
+.stories img {
+    border: solid rgb(197, 197, 197) 4px;
+    border-radius: 50%;
+}
+  
+
+main {
+    width: calc(60vw - 40px);
+    margin-top: 23px;
+    margin-left: 5vw;
+}
+
+a:link, a:visited {
+    text-decoration: none;
+  }
+  
+
+.post {
+    
+}
+
+@media (max-width: 800px) {
+    .suggestions {
+        display: none;
+    }
+
+    main {
+        margin-left: 2vw;
+        margin-right: 2vw;
+    }
 }
