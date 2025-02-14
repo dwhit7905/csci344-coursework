@@ -35,6 +35,7 @@ main,
 
 /* End Debugging Code */
 
+
 .top-nav {
     position: sticky;
     top: 0;
@@ -52,6 +53,10 @@ main,
     min-height: 300px;
 }
 
+.post img {
+    width: 100%;
+}
+
 aside {
     position: fixed;
     top: 100px;
@@ -62,15 +67,15 @@ aside {
     
 }
 
-aside img {
-    border-radius: 50%;
-}
-
 .account {
     display: grid;
     grid-template-columns: 80px auto 80px;
     align-items: center;
     margin-bottom: 20px;
+}
+
+.account img {
+    border-radius: 50%;
 }
 
 .account p, .account h3 {
@@ -80,6 +85,14 @@ aside img {
 .current-user {
     display: flex;
     gap: 20px;
+
+}
+
+.current-user img {
+    border-radius: 50%;
+    height: 60px;
+    width: 60px;
+
 }
 
 .stories {
@@ -87,13 +100,19 @@ aside img {
     justify-content: left;
     padding: 10px;
     gap: 30px;
-    align-items:center;
     background-color: white;
 }
 
 .stories img {
     border: solid rgb(197, 197, 197) 4px;
     border-radius: 50%;
+}
+
+.stories > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
   
 
@@ -107,9 +126,18 @@ a:link, a:visited {
     text-decoration: none;
   }
   
+.post-buttons {
+    display: flex;
+    justify-content: space-between;
+}
 
-.post {
-    
+.comments {
+    display: flex;
+}
+
+.add-comment {
+    display: flex;
+    justify-content: space-between;
 }
 
 @media (max-width: 800px) {
