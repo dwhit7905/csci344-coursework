@@ -1,0 +1,11 @@
+.card {
+    width: 200px;
+    border: solid black 1px;
+    background-color: darkorange;
+}
+
+.active-card {
+    /* width: 200px;
+    border: solid black 1px; */
+    background-color:darkcyan;
+}
