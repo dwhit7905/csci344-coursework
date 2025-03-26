@@ -107,7 +107,7 @@ function renderPost(postJSON) {
         </section>
     `;
     const container = document.querySelector('main');
-    mainEl.insertAdjacentElementHTML("beforeend", template)
+    // mainEl.insertAdjacentElementHTML("beforeend", template)
   }
 
 function renderPosts(postListJSON) {
