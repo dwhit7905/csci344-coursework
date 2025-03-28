@@ -8,6 +8,7 @@ async function initializeScreen() {
     token = await getToken();
     showNav();
     getPosts();
+    getSuggestions();
 }
 
 async function getToken() {
@@ -64,7 +65,6 @@ function renderBookmarkButton(postJSON) {
 }
 
 function renderPost(postJSON) {
-    const mainEl = document.querySelector("main");
     // posts.forEach
     const template = `
     <section class="bg-white border mb-10">
@@ -78,7 +78,6 @@ function renderPost(postJSON) {
                 <div class="flex justify-between text-2xl mb-3">
                     <div>
                         ${getLikeButton(postJSON)}
-                        <button><i class="far fa-heart"></i></button>
                         <button><i class="far fa-comment"></i></button>
                         <button><i class="far fa-paper-plane"></i></button>
                     </div>
@@ -106,8 +105,8 @@ function renderPost(postJSON) {
             </div>
         </section>
     `;
-    const container = document.querySelector('main');
-    // mainEl.insertAdjacentElementHTML("beforeend", template)
+    const mainEl = document.querySelector("main");
+    mainEl.insertAdjacentHTML("beforeend", template);
   }
 
 function renderPosts(postListJSON) {
@@ -179,6 +178,94 @@ window.deleteBookmark = async function(bookmarkId) {
     const data = await response.json();
     console.log(data);
 }
+
+async function getStories() {
+    const response = await fetch("https://photo-app-secured.herokuapp.com/api/stories/", {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        }
+    });
+    const data = await response.json();
+    console.log(data);
+}
+
+function renderStories(storiesListJSON) {
+    storiesListJSON.forEach(renderStory);
+}
+
+function renderStory(storyJSON) {
+    // posts.forEach
+    const template = `
+    <header class="flex gap-4 items-center">
+            <img src="${storiesJSON.image_url}" class="rounded-full w-16" />
+            <h2 class="font-Comfortaa font-bold text-2xl">${storiesJSON.username}</h2>
+        </header>`;
+    const mainEl = document.querySelector("#stories");
+    mainEl.insertAdjacentHTML("beforeend", template);
+  }
+
+async function getProfile() {
+    const response = await fetch("https://photo-app-secured.herokuapp.com/api/profile/", {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        }
+    });
+    const data = await response.json();
+    console.log(data);
+    renderProfile(data);
+}
+
+function renderProfile(profileJSON) {
+    // posts.forEach
+    const template = `
+    <header class="flex gap-4 items-center">
+            <img src="${profileJSON.image_url}" class="rounded-full w-16" />
+            <h2 class="font-Comfortaa font-bold text-2xl">${profileJSON.username}</h2>
+        </header>`;
+    const mainEl = document.querySelector("#profile");
+    mainEl.insertAdjacentHTML("beforeend", template);
+  }
+
+//   function renderProfile(profileJSON) {
+//     profileJSON.forEach(renderProfile);
+// }
+
+async function getSuggestions() {
+    const response = await fetch("https://photo-app-secured.herokuapp.com/api/suggestions/", {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        }
+    });
+    const data = await response.json();
+    console.log(data);
+    renderSuggestions(data);
+}
+
+function renderSuggestions(suggestionListJSON) {
+    suggestionListJSON.forEach(renderSuggestion);
+}
+
+function renderSuggestion(suggestionJSON) {
+    // posts.forEach
+    const template = `
+    <section class="flex justify-between items-center mb-4 gap-2">
+    <img src="${suggestionJSON.thumb_url}" class="rounded-full w-16" />
+    <div class="w-[180px]">
+        <p class="font-bold text-sm">${suggestionJSON.username}</p>
+        <p class="text-gray-500 text-xs">suggested for you</p>
+    </div>
+    <button class="text-blue-500 text-sm py-2">follow</button>
+</section>`;
+    const mainEl = document.querySelector("#suggestions");
+    mainEl.insertAdjacentHTML("beforeend", template);
+  }
+
 
 // after all of the functions are defined, invoke initialize at the bottom:
 initializeScreen();
