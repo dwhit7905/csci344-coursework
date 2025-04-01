@@ -1,6 +1,6 @@
 import React from "react";
 import NavBar from "./NavBar";
-import {Image, TimePicker, ColorPicker, Calendar} from 'antd';
+import {Image, TimePicker, ColorPicker, Calendar, Card, Rate} from 'antd';
 
 
 // custom components:
@@ -10,10 +10,12 @@ export default function App() {
             <NavBar />
 
             <main className="min-h-screen max-w-[1000px] mt-24 mx-auto">
+            <p>Put your design system components in the space below...</p>
+
                 <TimePicker/>
                 <ColorPicker defaultValue="#1677ff" />
                 <Calendar />
-                <p>Put your design system components in the space below...</p>
+                <Rate />
                 <h2 className="font-Comfortaa my-4 font-bold text-xl">
      Photo Gallery
  </h2>
@@ -59,9 +61,16 @@ export default function App() {
          width={200}
      />
  </div>
+ 
+ <Card title="Note" extra={<a href="#">More</a>} style={{ width: 300 }}>
+      <p>I wish I knew how to make this prettier</p>
+      
+    </Card>
             </main>
 
             <footer className="p-5 bg-white">footer goes here</footer>
         </>
+   
     );
+   
 }
