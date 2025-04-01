@@ -1,6 +1,6 @@
 import React from "react";
 import NavBar from "./NavBar";
-import {Image, TimePicker, ColorPicker} from 'antd';
+import {Image, TimePicker, ColorPicker, Calendar} from 'antd';
 
 
 // custom components:
@@ -12,6 +12,7 @@ export default function App() {
             <main className="min-h-screen max-w-[1000px] mt-24 mx-auto">
                 <TimePicker/>
                 <ColorPicker defaultValue="#1677ff" />
+                <Calendar />
                 <p>Put your design system components in the space below...</p>
                 <h2 className="font-Comfortaa my-4 font-bold text-xl">
      Photo Gallery

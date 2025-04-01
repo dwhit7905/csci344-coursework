@@ -189,6 +189,7 @@ async function getStories() {
     });
     const data = await response.json();
     console.log(data);
+    renderStories(data);
 }
 
 function renderStories(storiesListJSON) {
@@ -223,7 +224,7 @@ function renderProfile(profileJSON) {
     // posts.forEach
     const template = `
     <header class="flex gap-4 items-center">
-            <img src="${profileJSON.image_url}" class="rounded-full w-16" />
+            <img src="${profileJSON.thumb_url}" class="rounded-full w-16" />
             <h2 class="font-Comfortaa font-bold text-2xl">${profileJSON.username}</h2>
         </header>`;
     const mainEl = document.querySelector("#profile");
