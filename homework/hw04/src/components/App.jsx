@@ -8,10 +8,15 @@ import Stories from "./Stories";
 import Posts from "./Posts";
 
 export default function App({ username, token }) {
+
+    function logout(){
+        alert("logout");
+    }
+
     return (
         <>
             {/* Navbar (already implemented for you ) */}
-            <NavBar username={username} />
+            <NavBar username={username} logoutF={logout} />
 
             {/* Main Panel */}
             <main className="mt-[100px] md:max-w-[61vw] md:mr-[50px] px-6 md:pl-[5vw] lg:pl-[10vw]">
