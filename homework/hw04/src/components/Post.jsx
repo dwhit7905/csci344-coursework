@@ -64,7 +64,11 @@ export default function Post({ token, postObj }) {
                         <button><i className="far fa-paper-plane"></i></button>
                     </div>
                     <div>
-                        <Bookmark bookmarkId={postObj.current_user_bookmark_id} />
+                        <Bookmark 
+                        bookmarkId={postObj.current_user_bookmark_id} 
+                        postId={postObj.id}
+                        token={token}
+                        />
                     </div>
                 </div>
                 <p className="font-bold mb-3">{postObj.likes.length}</p>
