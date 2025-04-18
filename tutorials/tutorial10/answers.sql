@@ -10,7 +10,7 @@ FROM users;
 
 
 -- Exercise 3: Sorting
-
+SELECT last_name, first_name FROM users ORDER BY last_name;
 
 
 

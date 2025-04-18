@@ -1,0 +1,12 @@
+requests>=2.32.3            # for testing
+python-dotenv               # support for environment variables
+Flask>=3.1.0
+
+Flask-Cors>=5.0.0
+Flask-RESTful>=0.3.10
+
+psycopg2-binary>=2.9.10     # PostgreSQL DB connector
+SQLAlchemy>=2.0.36
+Flask-SQLAlchemy>=3.1.1     # Python <--> DB ORM
+pylint-django               # linter help
+Faker                       # to install fake data
