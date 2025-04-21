@@ -58,7 +58,9 @@ export default function Post({ token, postObj }) {
             <div className="p-4">
                 <div className="flex justify-between text-2xl mb-3">
                     <div>
-                        <Like likeId={postObj.current_user_like_id} />
+                        <Like likeId={postObj.current_user_like_id} 
+                        postId={postObj.id}
+                        token={token}/>
 
                         <button><i className="far fa-comment"></i></button>
                         <button><i className="far fa-paper-plane"></i></button>

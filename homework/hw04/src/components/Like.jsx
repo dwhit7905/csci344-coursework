@@ -1,7 +1,24 @@
 import React from "react";
 
-export default function Like({ likeId }) {
+import {postDataToServer, deleteDataFromServer} from "../server-requests"
+
+
+export default function Like({ likeId, postId, token }) {
     console.log(likeId); 
+
+    async function createLike() {
+        const sendData = {
+            post_id: postId,
+        }
+        console.log("creating a like...", sendData);
+        const reponseData = await postDataToServer(
+            token, 
+            "/api/likes/", 
+            sendData
+        );
+        console.log(reponseData);
+        // setStateBookmarkId(reponseData.id);
+    }
 
     if (likeId) {
         return (
@@ -11,7 +28,7 @@ export default function Like({ likeId }) {
         );
     } else {
         return (
-            <button>
+            <button onClick={createLike}>
                 <i className="far fa-heart"></i>
             </button>
         );
