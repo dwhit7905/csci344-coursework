@@ -14,9 +14,9 @@ class ProfileDetailEndpoint(Resource):
         self.current_user = current_user
 
     def get(self):
-        # TODO: Add GET logic...
+        user = self.current_user        
         return Response(
-            json.dumps({}),
+            json.dumps(user.to_dict()),
             mimetype="application/json",
             status=200,
         )

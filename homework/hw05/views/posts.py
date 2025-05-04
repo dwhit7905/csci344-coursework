@@ -95,6 +95,7 @@ class PostDetailEndpoint(Resource):
         self.current_user = current_user
 
     def patch(self, id):
+        print("POST id=", id)
 
         post = Post.query.get(id)
         if post is None:
@@ -159,7 +160,7 @@ class PostDetailEndpoint(Resource):
         )
 
     def get(self, id):
-        # print("POST id=", id)
+        print("POST id=", id)
 
         is_authorized_and_exists = can_view_post(id, self.current_user)
 
