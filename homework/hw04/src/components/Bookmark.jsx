@@ -7,7 +7,6 @@ export default function Bookmark({ token,  bookmarkId, postId }) {
     const [stateBookmarkId, setStateBookmarkId] = useState(bookmarkId);
     console.log(bookmarkId); 
 
-
     async function createBookmark() {
         const sendData = {
             post_id: postId,
