@@ -1,7 +1,9 @@
 // 2. Define businessToHTML here:
 
 
-
+function businessToHTML() {
+    
+}
 
 
 
