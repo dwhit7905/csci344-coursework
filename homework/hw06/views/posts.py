@@ -81,8 +81,6 @@ class PostListEndpoint(Resource):
 
         db.session.add(post)
         db.session.commit()
-        db.session.refresh(post)
-
 
         
         return Response(
@@ -107,11 +105,11 @@ class PostDetailEndpoint(Resource):
                 status=404,
         )
 
-        if post.user_id != self.current_user.id:
+        if post.user_id == self.current_user.id:
                 return Response(
                 json.dumps({"Message": f"You are not allowed to modify post id={id}"}),
                 mimetype="application/json",
-                status=404,
+                status=403,
         )
 
         data = request.json
@@ -143,11 +141,11 @@ class PostDetailEndpoint(Resource):
                 status=404,
         )
 
-        if post.user_id != self.current_user.id:
+        if post.user_id == self.current_user.id:
                 return Response(
                 json.dumps({"Message": f"You are not allowed to modify post id={id}"}),
                 mimetype="application/json",
-                status=404,
+                status=403,
         )
 
         Post.query.filter_by(id=id).delete()

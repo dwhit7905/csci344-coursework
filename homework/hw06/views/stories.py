@@ -13,12 +13,12 @@ class StoriesListEndpoint(Resource):
         self.current_user = current_user
 
     def get(self):
-        
+
         ids_for_me_and_my_friends = get_authorized_user_ids(self.current_user)
 
-        stories = Story.query.filter(Story.user_id.in_(ids_for_me_and_my_friends)).all()
+        stories = Story.query.filter(Story.user_id.in_(ids_for_me_and_my_friends))
 
-        data = [item.to_dict() for item in stories]
+        data = [item.to_dict() for item in stories.all()]
 
         return Response(
             json.dumps(data),

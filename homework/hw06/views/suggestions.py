@@ -3,25 +3,20 @@ import json
 from flask import Response
 from flask_restful import Resource
 
-from models.story import Story
+from models.user import User
 from views import get_authorized_user_ids
 
 
-class StoriesListEndpoint(Resource):
+class SuggestionsListEndpoint(Resource):
 
     def __init__(self, current_user):
         self.current_user = current_user
 
     def get(self):
-        
-        ids_for_me_and_my_friends = get_authorized_user_ids(self.current_user)
-
-        stories = Story.query.filter(Story.user_id.in_(ids_for_me_and_my_friends)).all()
-
-        data = [item.to_dict() for item in stories]
-
+        user_ids = get_authorized_user_ids(self.current_user)
+        users = User.query.filter(~User.id.in_(user_ids)).limit(7).all()
         return Response(
-            json.dumps(data),
+            json.dumps([user.to_dict() for user in users]),
             mimetype="application/json",
             status=200,
         )
@@ -29,8 +24,8 @@ class StoriesListEndpoint(Resource):
 
 def initialize_routes(api, current_user):
     api.add_resource(
-        StoriesListEndpoint,
-        "/api/stories",
-        "/api/stories/",
+        SuggestionsListEndpoint,
+        "/api/suggestions",
+        "/api/suggestions/",
         resource_class_kwargs={"current_user": current_user},
     )
