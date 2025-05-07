@@ -16,16 +16,50 @@ class AccessTokenEndpoint(Resource):
         password = body.get("password")
         print(username, password)
 
-        # Your code here to set the access / refresh token...
+        '''
+        1. need to query data base for user matcung username
+        if user doesnt exsit throw error and terminate early
+        2. check password matches
+        if pass doesnt match throw error and terminate early
+        3. if we get here, suer is legit and give them access token
+        '''
+        #1. query database
+        the_user = User.query.filter_by(username=username).one_or_none()
+        if the_user is None:
+            return Response(
+            json.dumps(
+                {
+                    "message": "user not found in database"
+                }
+            ),
+            mimetype="application/json",
+            status=401,
+        )
 
+        #2 check that passwords match by using built in function
+        if the_user.check_password(password) is False:
+            return Response(
+            json.dumps(
+                {
+                    "message": "password incorrect"
+                }
+            ),
+            mimetype="application/json",
+            status=401,
+        )
+
+        #3 create access and refresh  token s, will embed 
+        #the logged in user_id (the_user.id)
+        access_token =  flask_jwt_extended.create_access_token(identity = str(the_user.id))
+        refresh_token =  flask_jwt_extended.create_refresh_token(identity = str(the_user.id))
 
 
         # Modify the response to give the user their credentials:
         return Response(
             json.dumps(
                 {
-                    "access_token": "?????",
-                    "refresh_token": "?????",
+                    "access_token": access_token,
+                    "refresh_token": refresh_token
                 }
             ),
             mimetype="application/json",

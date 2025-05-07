@@ -22,7 +22,7 @@ class LikePost(db.Model):
         self.post_id = int(post_id)
 
     def to_dict(self):
-        return {"id": self.id, "user_id": self.user_id, "post_id": self.post_id}
+        return {"id": self.id, "user_id": self.user_id, "post_id": self.post_id, "timestamp": str(self.timestamp)}
 
     def __repr__(self):
         return "<Like Post %r>" % self.id

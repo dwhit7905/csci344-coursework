@@ -6,6 +6,7 @@ from flask_restful import Resource
 from models import db
 from models.post import Post
 from views import get_authorized_user_ids, can_view_post
+import flask_jwt_extended
 
 
 def get_path():
@@ -17,6 +18,7 @@ class PostListEndpoint(Resource):
     def __init__(self, current_user):
         self.current_user = current_user
 
+    @flask_jwt_extended.jwt_required()
     def get(self):
 
         count = request.args.get("limit")
@@ -52,6 +54,7 @@ class PostListEndpoint(Resource):
         data = [item.to_dict(user=self.current_user) for item in posts.all()]
         return Response(json.dumps(data), mimetype="application/json", status=200)
 
+    @flask_jwt_extended.jwt_required()
     def post(self):
         # TODO: handle POST logic
 
@@ -81,6 +84,8 @@ class PostListEndpoint(Resource):
 
         db.session.add(post)
         db.session.commit()
+        db.session.refresh(post)
+
 
         
         return Response(
@@ -94,6 +99,7 @@ class PostDetailEndpoint(Resource):
     def __init__(self, current_user):
         self.current_user = current_user
 
+    @flask_jwt_extended.jwt_required()
     def patch(self, id):
         print("POST id=", id)
 
@@ -105,11 +111,11 @@ class PostDetailEndpoint(Resource):
                 status=404,
         )
 
-        if post.user_id == self.current_user.id:
+        if post.user_id != self.current_user.id:
                 return Response(
                 json.dumps({"Message": f"You are not allowed to modify post id={id}"}),
                 mimetype="application/json",
-                status=403,
+                status=404,
         )
 
         data = request.json
@@ -132,6 +138,7 @@ class PostDetailEndpoint(Resource):
             mimetype="application/json", 
             status=200)
 
+    @flask_jwt_extended.jwt_required()
     def delete(self, id):
         post = Post.query.get(id)
         if post is None:
@@ -141,11 +148,11 @@ class PostDetailEndpoint(Resource):
                 status=404,
         )
 
-        if post.user_id == self.current_user.id:
+        if post.user_id != self.current_user.id:
                 return Response(
                 json.dumps({"Message": f"You are not allowed to modify post id={id}"}),
                 mimetype="application/json",
-                status=403,
+                status=404,
         )
 
         Post.query.filter_by(id=id).delete()
@@ -158,7 +165,8 @@ class PostDetailEndpoint(Resource):
             mimetype="application/json",
             status=200,
         )
-
+    
+    @flask_jwt_extended.jwt_required()
     def get(self, id):
         print("POST id=", id)
 

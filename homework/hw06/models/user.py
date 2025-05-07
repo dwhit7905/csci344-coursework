@@ -88,9 +88,8 @@ class User(db.Model):
             db.session.commit()
 
     def check_password(self, password):
-        print(generate_password_hash(password))
-        print(self.password_hash)
-        print(self.password_plaintext, password)
+        #this is hashing the password that was just sent over the internet
+        #and comparing itto the passwordstored in the database
         return check_password_hash(self.password_hash, password)
 
     def to_dict(self):
